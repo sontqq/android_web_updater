@@ -32,7 +32,9 @@ WebUpdater updater = new WebUpdater(
 updater.startUpdate();
 ```
 ### Step 3.
-Edit your AndroidManifest.xml like
+Edit your AndroidManifest.xml
+Change "com.apppackage" with your application's package id
+
 ```
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sontme.esp.appupdater">
