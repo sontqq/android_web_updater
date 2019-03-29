@@ -50,7 +50,7 @@ public class WebUpdater {
 
     public void downloadUpdate_Oreo_Http(Context _ctx, String _fileName, String _updateUrl) {
         final File file = new File(Environment.getExternalStorageDirectory(), _fileName);
-        final DownloadTask downloadTask = new DownloadTask(_ctx,file,"Updating...");
+        final DownloadTask downloadTask = new DownloadTask(_ctx, file, "Updating...", _fileName);
         downloadTask.execute(_updateUrl);
     }
 
@@ -61,9 +61,11 @@ class DownloadTask extends AsyncTask<String, Integer, String> {
     private Context mContext;
     private PowerManager.WakeLock mWakeLock;
     private File mTargetFile;
+    private String filename;
 
-    public DownloadTask(Context context,File targetFile,String dialogMessage) {
+    public DownloadTask(Context context, File targetFile, String dialogMessage, String filename) {
         this.mContext = context;
+        this.filename = filename;
         this.mTargetFile = targetFile;
         mPDialog = new ProgressDialog(context);
 
@@ -171,17 +173,16 @@ class DownloadTask extends AsyncTask<String, Integer, String> {
         if (result != null)
             Toast.makeText(mContext,"Download error: "+result, Toast.LENGTH_LONG).show();
         else{
-            installAPK(mContext);
+            installAPK(mContext, filename);
         }
     }
 
     public Uri getFileUri(Context context, File file) {
-        //file = new File(Environment.getExternalStorageDirectory(), "tauri_queue_watcher.apk");
         return FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".com.sontme.esp.tauriqueuewatcher.provider", file);
     }
 
-    public void installAPK(Context context) {
-        final File file = new File(Environment.getExternalStorageDirectory(), "tauri_queue_watcher.apk");
+    public void installAPK(Context context, String filename) {
+        final File file = new File(Environment.getExternalStorageDirectory(), filename);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Uri downloaded_apk = getFileUri(context,file);
             Intent intent = new Intent(Intent.ACTION_VIEW).setDataAndType(downloaded_apk,
@@ -198,3 +199,4 @@ class DownloadTask extends AsyncTask<String, Integer, String> {
     }
 
 }
+
