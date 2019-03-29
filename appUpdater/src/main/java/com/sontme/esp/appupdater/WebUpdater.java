@@ -23,7 +23,7 @@ import java.net.URL;
 
 public class WebUpdater {
 
-        // USAGE
+    // USAGE
     /*
         WebUpdater updater = new WebUpdater(
             getApplicationContext(),
