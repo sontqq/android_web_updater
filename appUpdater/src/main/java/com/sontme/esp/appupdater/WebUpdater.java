@@ -23,6 +23,17 @@ import java.net.URL;
 
 public class WebUpdater {
 
+        // USAGE
+    /*
+        WebUpdater updater = new WebUpdater(
+            getApplicationContext(),
+            "update_file.apk",
+            "https://example.com/update_file.apk"
+        );
+        updater.startUpdate();
+
+     */
+
     private Context ctx;
     private String fileName;
     private String updateUrl;
