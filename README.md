@@ -31,5 +31,22 @@ WebUpdater updater = new WebUpdater(
         );
 updater.startUpdate();
 ```
-
+### Step 3.
+Edit your AndroidManifest.xml like
+```
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sontme.esp.appupdater">
+<application>
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="${applicationId}.com.apppackage.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+</application>
+</manifest>
+```
 That's it!
