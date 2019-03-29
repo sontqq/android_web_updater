@@ -33,6 +33,7 @@ updater.startUpdate();
 ```
 ### Step 3.
 Edit your AndroidManifest.xml
+
 Change "com.apppackage" with your application's package id
 
 ```
