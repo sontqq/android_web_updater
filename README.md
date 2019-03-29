@@ -53,3 +53,5 @@ Change "com.apppackage" with your application's package id
 </manifest>
 ```
 That's it!
+
+Dont't forget to implement some version checking
